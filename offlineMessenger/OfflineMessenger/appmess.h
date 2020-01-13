@@ -1,11 +1,11 @@
 #pragma once
 #include "client.h"
-
+#include <string>
 class AppMess
 {
 public:
     AppMess();
     static Client* client;
-    static char username[256];
+    static std::string username;
 };
 

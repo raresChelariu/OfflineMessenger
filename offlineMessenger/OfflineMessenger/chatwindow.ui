@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>822</width>
-    <height>567</height>
+    <width>1044</width>
+    <height>686</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -32,63 +32,7 @@
      <string>List of Users</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="btnSend">
-    <property name="geometry">
-     <rect>
-      <x>700</x>
-      <y>490</y>
-      <width>101</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>18</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Send</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="leUserInput">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>490</y>
-      <width>401</width>
-      <height>51</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="textDiscussion">
-    <property name="geometry">
-     <rect>
-      <x>290</x>
-      <y>100</y>
-      <width>511</width>
-      <height>381</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="labelPerson">
-    <property name="geometry">
-     <rect>
-      <x>300</x>
-      <y>55</y>
-      <width>171</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>20</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Person</string>
-    </property>
-   </widget>
-   <widget class="QListWidget" name="listWidget">
+   <widget class="QListWidget" name="listUsers">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -116,13 +60,73 @@
      <string>Logged as</string>
     </property>
    </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>320</x>
+      <y>30</y>
+      <width>711</width>
+      <height>611</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="labelPerson">
+       <property name="font">
+        <font>
+         <pointsize>20</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Person</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTextEdit" name="textDiscussion"/>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="leUserInput"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btnSend">
+       <property name="font">
+        <font>
+         <pointsize>18</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Send</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QPushButton" name="btnRefreshUsersList">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>560</y>
+      <width>261</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Refresh Users List</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>822</width>
+     <width>1044</width>
      <height>22</height>
     </rect>
    </property>

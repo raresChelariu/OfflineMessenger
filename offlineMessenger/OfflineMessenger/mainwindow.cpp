@@ -17,17 +17,23 @@ MainWindow::~MainWindow()
 void MainWindow::on_btnLogin_clicked()
 {
     char* msg = (char*) malloc(256);
+    memset(msg, 0, 256);
     sprintf(msg, "%s;%s", ui->leUsername->text().toStdString().c_str(), ui->lePassword->text().toStdString().c_str());
     write(AppMess::client->sockDescr, msg, 256);
     read(AppMess::client->sockDescr, msg, 256);
     if (!strcmp(msg, "LOGIN_YES"))
     {
+        free(msg);
+        AppMess::username = std::string(ui->leUsername->text().toStdString().c_str());
         ChatWindow* window = new ChatWindow();
         window->show();
         this->hide();
-        strcpy(AppMess::username, ui->leUsername->text().toStdString().c_str());
         return;
     }
+    free(msg);
+    this->setEnabled(false);
     QMessageBox* msgBox = new QMessageBox();
     msgBox->setText("Invalid credentials!");
+    msgBox->exec();
+    this->setEnabled(true);
 }

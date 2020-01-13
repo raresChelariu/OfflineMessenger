@@ -9,22 +9,35 @@ class ServerMess
 {
 public:
     ServerMess();
+    ~ServerMess();
     bool loginDataValid(char* username, char* password);
     void AcceptingClients();
 
     void* ThreadStart(void*);
+
     int idTh = 0;
     pthread_t threads[CAPACITY_THREADS];
     vector<ThreadContainer*> allThreads;
+    pthread_mutex_t lock;
     vector<string> linkedUsers;
 
     struct sockaddr_in srvSock;
     struct sockaddr_in cliSock;
     int srvDesc;
 };
-
+ServerMess::~ServerMess()
+{
+    pthread_mutex_destroy(&this->lock);
+    linkedUsers.clear();
+}
 ServerMess::ServerMess()
 {
+    if (-1 == pthread_mutex_init(&this->lock, NULL))
+    {
+        printf("Error on creating the lock!\n");
+        fflush(stdout);
+        exit(1);
+    }
     memset(&threads, 0, sizeof(pthread_t) * CAPACITY_THREADS);
     memset(&this->srvSock, 0, sizeof(sockaddr_in));
     memset(&this->srvSock, 0, sizeof(sockaddr_in));
@@ -53,7 +66,7 @@ ServerMess::ServerMess()
 }
 void ServerMess::AcceptingClients()
 {
-    printf("Accepting incoming connection requests");
+    printf("Accepting incoming connection requests...\n");
     fflush(stdout);
     int cliDesc;
     memset(&cliSock, 0, sizeof(sockaddr_in));
@@ -67,9 +80,11 @@ void ServerMess::AcceptingClients()
             continue;
         }
 
-        ThreadContainer* t = new ThreadContainer(&threads[this->idTh++], cliDesc, &linkedUsers);
-        perror("Hola");
+        ThreadContainer* t = new ThreadContainer(&threads[this->idTh++], &this->lock, cliDesc, &linkedUsers);
+        perror("Hola\n");
         fflush(stdout);
         allThreads.push_back(t);
+        perror("Howdy\n");
+        fflush(stdout);
     }
 }

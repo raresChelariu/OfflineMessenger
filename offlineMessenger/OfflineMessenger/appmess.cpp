@@ -1,4 +1,4 @@
 #include "appmess.h"
 
 Client* AppMess::client = NULL;
-char AppMess::username[256];
+std::string AppMess::username;

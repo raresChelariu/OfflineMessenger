@@ -1,4 +1,5 @@
 #include "servermess.h"
+
 int main()
 {
     ServerMess* server = new ServerMess();
